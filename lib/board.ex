@@ -32,7 +32,7 @@ defmodule Board do
 
   def rows(board), do: Enum.chunk(board, size(board))
 
-  defp size(board), do: quick_sqr(Enum.count(board))
+  def size(board), do: quick_sqr(Enum.count(board))
   defp quick_sqr(value), do: quick_sqr(value, 1)
   defp quick_sqr(value, index) when value == index * index do
     index

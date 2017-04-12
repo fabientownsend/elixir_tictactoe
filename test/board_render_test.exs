@@ -1,11 +1,6 @@
 defmodule BoardRenderTest do
   use ExUnit.Case
 
-  test "render a line" do
-    line = [0, 1, 2]
-    assert BoardRender.line(line) == " 0 | 1 | 2 \n"
-  end
-
   test "renders an empty board" do
     board = Board.empty_board
 
@@ -21,5 +16,14 @@ defmodule BoardRenderTest do
     assert BoardRender.render(board) == " 0 | 1 | 2 \n" <>
                                         " 3 | 4 | x \n" <>
                                         " 6 | 7 | 8 \n"
+  end
+
+  test "renders a 4 * 4 board" do
+    board = Board.empty_board(4)
+
+    assert BoardRender.render(board) == "  0 |  1 |  2 |  3 \n" <>
+                                        "  4 |  5 |  6 |  7 \n" <>
+                                        "  8 |  9 | 10 | 11 \n" <>
+                                        " 12 | 13 | 14 | 15 \n"
   end
 end
