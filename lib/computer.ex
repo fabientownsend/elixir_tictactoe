@@ -47,6 +47,7 @@ defmodule Computer do
       Board.win?(board, mark) -> depth
       Board.win?(board, other_mark(mark)) -> -depth
       Board.tie?(board) -> 0
+      depth == 4 -> 0
       true -> keep_playing(maximizing_player, board, mark, depth, alpha, beta)
     end
   end
