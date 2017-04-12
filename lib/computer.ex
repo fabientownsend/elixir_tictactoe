@@ -3,16 +3,22 @@ defmodule Computer do
   defp other_mark(:o), do: :x
 
   def move(board, mark) do
-    if board == Board.empty_board do
-      random_move()
+    if first_move(board, 0) do
+      random_move(board)
     else
       board |> most_valuable_move(mark)
     end
   end
 
-  def random_move() do
-    Enum.random([0, 2, 4, 6, 8])
+  defp first_move(board, number) do
+    move_played(board) <= number
   end
+
+  def move_played(board) do
+    Enum.count(board) - Enum.count(Board.available_placeholders(board))
+  end
+
+  def random_move(board), do: Enum.random(board |> Board.available_placeholders)
 
   defp most_valuable_move(board, mark) do
     board
