@@ -1,6 +1,8 @@
 defmodule Tictactoe.CLI do
   def main(args \\ []) do
-    board = Board.empty_board(4)
+    board =
+      Menu.select_board_size
+      |> Board.empty_board
 
     Menu.select_game_type
     |> PlayersFactory.get_players

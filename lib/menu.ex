@@ -1,4 +1,18 @@
 defmodule Menu do
+  def select_board_size do
+    board_available()
+    |> display()
+
+    select_between(3, and: 4)
+  end
+
+  defp board_available do
+    [
+      ["3 - 3*3 board"],
+      ["4 - 4*4 board"],
+    ]
+  end
+
   def select_game_type do
     display_game_types()
 
@@ -13,6 +27,11 @@ defmodule Menu do
   defp display_game_types do
     game_types()
     |> Enum.map(&description/1)
+    |> display
+  end
+
+  defp display(menu) do
+    menu
     |> Enum.join("\n")
     |> IO.puts
   end
