@@ -1,16 +1,14 @@
 defmodule Menu do
   def select_board_size do
-    board_available()
+    boards_available([3, 4])
     |> display()
 
     select_between(3, and: 4)
   end
 
-  defp board_available do
-    [
-      ["3 - 3*3 board"],
-      ["4 - 4*4 board"],
-    ]
+  defp boards_available([]), do: []
+  defp boards_available([size | tail]) do
+      ["#{size} - #{size} * #{size} board"] ++ boards_available(tail)
   end
 
   def select_game_type do
